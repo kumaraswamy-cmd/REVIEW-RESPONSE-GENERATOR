@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4f1ea">
+  <title>Review Response Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Reputation desk</p>
+        <h1>Review Response Generator</h1>
+      </div>
+      <div class="status-pill" id="aiStatus">
+        <i data-lucide="sparkles"></i>
+        <span>Checking AI</span>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="input-panel" aria-label="Review details">
+        <div class="section-heading">
+          <h2>Review Details</h2>
+          <button class="ghost-button" id="loadSampleBtn" type="button">
+            <i data-lucide="wand-2"></i>
+            Sample
+          </button>
+        </div>
+
+        <div class="form-grid">
+          <label>
+            <span>Business</span>
+            <input id="businessName" type="text" placeholder="Kumar Dental Care" autocomplete="organization">
+          </label>
+          <label>
+            <span>Category</span>
+            <input id="businessCategory" type="text" placeholder="dental clinic">
+          </label>
+          <label>
+            <span>City</span>
+            <input id="city" type="text" placeholder="Pune">
+          </label>
+          <label>
+            <span>Reviewer</span>
+            <input id="reviewerName" type="text" placeholder="Asha">
+          </label>
+        </div>
+
+        <div class="control-row">
+          <fieldset>
+            <legend>Platform</legend>
+            <div class="segmented" id="platformGroup">
+              <button class="active" type="button" data-value="Google">Google</button>
+              <button type="button" data-value="Yelp">Yelp</button>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Rating</legend>
+            <div class="rating-buttons" id="ratingGroup" aria-label="Star rating">
+              <button type="button" data-value="1">1</button>
+              <button type="button" data-value="2">2</button>
+              <button type="button" data-value="3">3</button>
+              <button type="button" data-value="4">4</button>
+              <button class="active" type="button" data-value="5">5</button>
+            </div>
+          </fieldset>
+        </div>
+
+        <label class="wide-label">
+          <span>Review</span>
+          <textarea id="reviewText" rows="8" placeholder="Paste the customer review here"></textarea>
+        </label>
+
+        <div class="form-grid compact">
+          <label>
+            <span>Keywords</span>
+            <input id="keywords" type="text" placeholder="family dentist, teeth cleaning">
+          </label>
+          <label>
+            <span>Tone</span>
+            <select id="tone">
+              <option>Professional</option>
+              <option>Warm</option>
+              <option>Concise</option>
+              <option>Friendly</option>
+            </select>
+          </label>
+          <label>
+            <span>Length</span>
+            <select id="length">
+              <option>Standard</option>
+              <option>Short</option>
+              <option>Detailed</option>
+            </select>
+          </label>
+          <label>
+            <span>Action</span>
+            <select id="callToAction">
+              <option>Invite return visit</option>
+              <option>Ask for update</option>
+              <option>Request direct contact</option>
+            </select>
+          </label>
+        </div>
+
+        <button class="primary-button" id="generateBtn" type="button">
+          <i data-lucide="sparkles"></i>
+          Generate responses
+        </button>
+      </section>
+
+      <section class="output-panel" aria-label="Generated response">
+        <div class="section-heading">
+          <h2>Draft Response</h2>
+          <div class="toolbar">
+            <button class="icon-button" id="copyBtn" type="button" title="Copy response" aria-label="Copy response">
+              <i data-lucide="copy"></i>
+            </button>
+            <button class="icon-button" id="saveBtn" type="button" title="Save draft" aria-label="Save draft">
+              <i data-lucide="save"></i>
+            </button>
+            <button class="icon-button" id="downloadBtn" type="button" title="Download response" aria-label="Download response">
+              <i data-lucide="download"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="variant-tabs" id="variantTabs"></div>
+        <textarea id="responseOutput" class="response-box" rows="12" placeholder="Your generated reply will appear here"></textarea>
+
+        <div class="analysis-strip" id="analysisStrip">
+          <div>
+            <span>Sentiment</span>
+            <strong id="sentimentValue">Not generated</strong>
+          </div>
+          <div>
+            <span>Topics</span>
+            <strong id="topicValue">None</strong>
+          </div>
+          <div>
+            <span>Characters</span>
+            <strong id="charCount">0</strong>
+          </div>
+        </div>
+
+        <div class="keyword-list" id="keywordList"></div>
+        <div class="risk-list" id="riskList"></div>
+      </section>
+
+      <section class="history-panel" aria-label="Saved responses">
+        <div class="section-heading">
+          <h2>Saved Drafts</h2>
+          <button class="ghost-button danger" id="clearHistoryBtn" type="button">
+            <i data-lucide="trash-2"></i>
+            Clear
+          </button>
+        </div>
+        <div class="history-list" id="historyList"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

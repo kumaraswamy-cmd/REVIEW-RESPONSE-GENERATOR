@@ -1,0 +1,17 @@
+{
+  "name": "review-response-generator",
+  "version": "1.0.0",
+  "description": "AI-assisted Google and Yelp review response generator for small businesses.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js"
+  },
+  "keywords": [
+    "reviews",
+    "reputation",
+    "seo",
+    "small-business"
+  ],
+  "license": "MIT"
+}
